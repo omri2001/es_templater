@@ -1,24 +1,32 @@
-import { ReactElement, useState } from "react";
-import WelcomePage from "./components/welcomePage/welcomPage";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-function display_page(page: string): ReactElement {
-  let window = <></>;
-  switch (page) {
-    case "create":
-      break;
-    case "update":
-      break;
-    default:
-      window = <WelcomePage />;
-      break;
-  }
-  return window;
-}
+import MyCostumeThemeProvider from "./assets/costumeThemeProvider";
+import ResponsiveNavBar, { PageInfo } from "./components/navbar/navBar";
+import { createPageInfo } from "./pages/createPage/createPage";
+import { updatePageInfo } from "./pages/updatePage/updatePage";
+import { homePageInfo } from "./pages/welcomePage/welcomPage";
 
 function App() {
-  const [page, setPage] = useState("");
+  const pages: PageInfo[] = [homePageInfo, createPageInfo, updatePageInfo];
 
-  return display_page(page);
+  return (
+    <MyCostumeThemeProvider>
+      <BrowserRouter>
+        <div>
+          <ResponsiveNavBar pages={pages} />
+          <Routes>
+            {pages.map((pageInfo) => (
+              <Route
+                key={pageInfo.name}
+                path={pageInfo.route}
+                element={pageInfo.element}
+              />
+            ))}
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </MyCostumeThemeProvider>
+  );
 }
 
 export default App;
