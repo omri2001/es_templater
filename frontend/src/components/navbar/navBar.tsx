@@ -14,9 +14,6 @@ import * as React from "react";
 import { ReactElement } from "react";
 import AppLogo from "./logo";
 
-const pages = ["Create", "Update", "Show"];
-const settings = ["User", "Logout"];
-
 export interface PageInfo {
   name: string;
   route: string;
