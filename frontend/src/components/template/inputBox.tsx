@@ -1,5 +1,5 @@
 import { TextField } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function InputBox({
   label,
@@ -10,7 +10,11 @@ export default function InputBox({
   value: string;
   setTextFunc: (text: string) => void;
 }) {
-  const [text, setText] = useState(value);
+  const [text, setText] = useState<string>(value);
+  useEffect(() => {
+    setText(text);
+  }, []); // Empty dependency array ensures this runs only on mount
+
   return (
     <TextField
       sx={{ width: "25ch" }}
