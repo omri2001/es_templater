@@ -1,19 +1,22 @@
-import { TextField } from "@mui/material";
+import { esTemplate } from "../es_template/templateType";
+import InputBox from "../inputBox";
 
 export default function DisplayNameInput({
-  setDisplayName,
+  es_template,
+  setEsTemplate,
 }: {
-  setDisplayName: (text: string) => void;
+  es_template: esTemplate;
+  setEsTemplate: (temmplate: esTemplate) => void;
 }) {
+  const setDisplayName: (display_name: string) => void = (display_name) => {
+    es_template.display_name = display_name;
+    setEsTemplate(es_template);
+  };
   return (
-    <TextField
-      sx={{ width: "25ch" }}
-      id="display_name-basic"
-      variant="outlined"
+    <InputBox
       label="display name"
-      onBlur={(e) => {
-        setDisplayName(e.target.value);
-      }}
+      value={es_template.display_name}
+      setTextFunc={setDisplayName}
     />
   );
 }

@@ -1,7 +1,6 @@
 import { Autocomplete, TextField } from "@mui/material";
-import { useState } from "react";
 import { esTemplate } from "../es_template/templateType";
-import { Project, projects } from "../projects/projectsType";
+import { projects } from "../projects/projectsType";
 
 type projectsType = esTemplate["project"];
 

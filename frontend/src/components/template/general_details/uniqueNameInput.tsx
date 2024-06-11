@@ -1,38 +1,41 @@
 import { Autocomplete, TextField } from "@mui/material";
-import { useState } from "react";
-import { esTemplate, templates } from "../es_template/templateType";
+import { esTemplate } from "../es_template/templateType";
 import InputBox from "../inputBox";
 
 export default function UniqueNameInput({
   kind,
   es_template,
-  setUniqueName,
-  options,
+  setEsTemplate,
+  templates,
 }: {
   kind: "create" | "update";
   es_template: esTemplate;
-  setUniqueName: (text: string) => void;
-  options: string[];
+  setEsTemplate: (text: esTemplate) => void;
+  templates: esTemplate[];
 }) {
-  const [engines, setEngines] = useState<string[]>([]);
+  const setTemplate = (unique_name: string | null) => {
+    const fixed_name = unique_name === null ? "" : unique_name;
+    const chosen_template = templates.filter((template) => {
+      return template.unique_name == fixed_name;
+    });
+    setEsTemplate(chosen_template[0]);
+  };
 
-  const get_engines = (project: string) => {
-    return templates
-      .filter((template) => template.project == project)
-      .map((template) => template.unique_name);
+  const setUniqueName = (unique_name: string) => {
+    es_template.unique_name = unique_name;
+    setEsTemplate(es_template);
   };
 
   return kind == "update" ? (
     <Autocomplete
       disablePortal
       id="unique-names-autocomplete"
-      options={options}
+      options={templates.map((template) => template.unique_name)}
       sx={{ width: "25ch" }}
       blurOnSelect={true}
-      value={es_template.unique_name == "" ? null : es_template.unique_name}
+      value={es_template.unique_name}
       onChange={(e, value) => {
-        setEngines(get_engines(es_template.project));
-        setUniqueName(value === null ? "" : value);
+        setTemplate(value);
       }}
       renderInput={(params) => <TextField {...params} label="unique name" />}
     />

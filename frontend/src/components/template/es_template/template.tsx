@@ -4,6 +4,7 @@ import GeneralDetailsBox from "../general_details/generalDetailsBox";
 import KafkaDetailsBox from "../kafka_details/kafkaDetailsBox";
 import PreviewButton from "../preview/previewButton";
 import { esTemplate } from "./templateType";
+import Fields from "../fields/fields";
 
 export default function Template({
   kind,
@@ -42,6 +43,7 @@ export default function Template({
         es_template={es_template}
         setEsTemplate={setEsTemplate}
       />
+      <Fields />
       <PreviewButton es_template={es_template} />
     </Box>
   );

@@ -3,17 +3,20 @@ import { useEffect, useState } from "react";
 
 export default function InputBox({
   label,
+  ikey = null,
   value,
   setTextFunc,
 }: {
   label: string;
-  value: string;
+  ikey: string | null;
+  value: string | null;
   setTextFunc: (text: string) => void;
 }) {
-  const [text, setText] = useState<string>(value);
+  const [text, setText] = useState<string>(value === null ? "" : value);
+
   useEffect(() => {
-    setText(text);
-  }, []); // Empty dependency array ensures this runs only on mount
+    setText(value === null ? "" : value);
+  }, [value]);
 
   return (
     <TextField
@@ -22,11 +25,12 @@ export default function InputBox({
       variant="outlined"
       value={text}
       label={label}
+      key={ikey === null ? label : ikey}
       onChange={(e) => {
         setText(e.target.value);
       }}
       onBlur={(e) => {
-        setTextFunc(e.target.value);
+        setTextFunc(text);
       }}
     />
   );

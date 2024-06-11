@@ -2,33 +2,33 @@ import { Box, Typography } from "@mui/material";
 import { Project } from "../projects/projectsType";
 
 export interface KafkaDetails {
-  brokers: string;
-  username: string;
-  password: string;
-  topic: string;
+  brokers: string | null;
+  username: string | null;
+  password: string | null;
+  topic: string | null;
 }
 
 export interface ClassificationDetails {
-  slice1: string;
-  slice2: string;
-  slice3: string;
-  slice4: string;
+  slice1: string | null;
+  slice2: string | null;
+  slice3: string | null;
+  slice4: string | null;
 }
 
 export interface esTemplate {
-  project: Project | "";
-  unique_name: string;
-  display_name: string;
+  project: Project | null;
+  unique_name: string | null;
+  display_name: string | null;
   kafka: KafkaDetails;
   classification: ClassificationDetails;
 }
 
 export const emptyTemplate: esTemplate = {
-  project: "",
-  unique_name: "",
-  display_name: "",
-  kafka: { brokers: "", username: "", password: "", topic: "" },
-  classification: { slice1: "", slice2: "", slice3: "", slice4: "" },
+  project: null,
+  unique_name: null,
+  display_name: null,
+  kafka: { brokers: null, username: null, password: null, topic: null },
+  classification: { slice1: null, slice2: null, slice3: null, slice4: null },
 };
 
 export const wofATemplate: esTemplate = {
