@@ -3,12 +3,10 @@ import { useEffect, useState } from "react";
 
 export default function InputBox({
   label,
-  ikey = null,
   value,
   setTextFunc,
 }: {
   label: string;
-  ikey: string | null;
   value: string | null;
   setTextFunc: (text: string) => void;
 }) {
@@ -20,16 +18,14 @@ export default function InputBox({
 
   return (
     <TextField
-      sx={{ width: "25ch" }}
       id={`${label}-input`}
       variant="outlined"
       value={text}
       label={label}
-      key={ikey === null ? label : ikey}
       onChange={(e) => {
         setText(e.target.value);
       }}
-      onBlur={(e) => {
+      onBlur={() => {
         setTextFunc(text);
       }}
     />

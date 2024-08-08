@@ -1,4 +1,5 @@
 import { Box, Typography } from "@mui/material";
+import { FieldType } from "../fields/fieldType";
 import { Project } from "../projects/projectsType";
 
 export interface KafkaDetails {
@@ -21,6 +22,7 @@ export interface esTemplate {
   display_name: string | null;
   kafka: KafkaDetails;
   classification: ClassificationDetails;
+  fields: FieldType[];
 }
 
 export const emptyTemplate: esTemplate = {
@@ -29,6 +31,7 @@ export const emptyTemplate: esTemplate = {
   display_name: null,
   kafka: { brokers: null, username: null, password: null, topic: null },
   classification: { slice1: null, slice2: null, slice3: null, slice4: null },
+  fields: [],
 };
 
 export const wofATemplate: esTemplate = {
@@ -42,6 +45,24 @@ export const wofATemplate: esTemplate = {
     slice3: "wofA",
     slice4: "wofA",
   },
+  fields: [
+    {
+      key: "123",
+      unique_name: "A",
+      display_name: "fieldA",
+      type: "text",
+      ontology: "B",
+      is_shown: true,
+    },
+    {
+      key: "234",
+      unique_name: "B",
+      display_name: "fieldB",
+      type: "date",
+      ontology: "T",
+      is_shown: false,
+    },
+  ],
 };
 export const wofBTemplate: esTemplate = {
   unique_name: "wofB",
@@ -54,6 +75,7 @@ export const wofBTemplate: esTemplate = {
     slice3: "wofB",
     slice4: "wofB",
   },
+  fields: [],
 };
 export const bomATemplate: esTemplate = {
   unique_name: "bomA",
@@ -66,6 +88,7 @@ export const bomATemplate: esTemplate = {
     slice3: "bomA",
     slice4: "bomA",
   },
+  fields: [],
 };
 
 export const templates: esTemplate[] = [
@@ -92,7 +115,7 @@ export function renderObject(obj: any, parentKey = ""): JSX.Element[] {
         }
         return (
           <Typography key={`${displayKey}-${index}`} sx={{ ml: 2 }}>
-            {`${key}: ${String(value)}`}
+            {`${key}: ${String(value === null ? "" : value)}`}
           </Typography>
         );
       })}

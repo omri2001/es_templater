@@ -1,10 +1,10 @@
 import { Box } from "@mui/material";
 import ClassificationDetailsBox from "../classification_details/classificationDetailsBox";
+import Fields from "../fields/fields";
 import GeneralDetailsBox from "../general_details/generalDetailsBox";
 import KafkaDetailsBox from "../kafka_details/kafkaDetailsBox";
 import PreviewButton from "../preview/previewButton";
 import { esTemplate } from "./templateType";
-import Fields from "../fields/fields";
 
 export default function Template({
   kind,
@@ -43,7 +43,7 @@ export default function Template({
         es_template={es_template}
         setEsTemplate={setEsTemplate}
       />
-      <Fields />
+      <Fields es_template={es_template} setEsTemplate={setEsTemplate} />
       <PreviewButton es_template={es_template} />
     </Box>
   );

@@ -1,0 +1,11 @@
+.delete-btn {
+  transition: color 0.3s ease;
+}
+
+.delete-btn:hover {
+  color: rgb(194, 30, 33);
+}
+.dnd-margin {
+  margin: 10px;
+  padding: 16px;
+}

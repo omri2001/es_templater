@@ -22,7 +22,7 @@ export default function ClassificationDetailsBox({
           <InputBox
             label={key}
             key={`${key}-input`}
-            defaultValue={value}
+            value={value}
             setTextFunc={(text) => {
               handleInputChange(
                 (key = key as keyof ClassificationDetails),
