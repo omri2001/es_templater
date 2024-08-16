@@ -1,13 +1,13 @@
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Box, IconButton } from "@mui/material";
-import InputBox from "../inputBox";
+import InputBox from "../../inputs/inputBox";
 import "./field.css"; // Import the CSS file
 
 import DragIndicatorIcon from "@mui/icons-material/DragIndicator";
 import React from "react";
 import { Draggable, DraggableProvided } from "react-beautiful-dnd";
-import CheckBox from "../checkBox";
-import SelectBox from "../selectBox";
+import CheckBox from "../../inputs/checkBox";
+import SelectBox from "../../inputs/selectBox";
 import { FieldType } from "./fieldType";
 
 const Field = React.memo(
@@ -16,11 +16,13 @@ const Field = React.memo(
     field,
     onDelete,
     onUpdateField,
+    onUniqueNameUpdate,
   }: {
     index: number;
     field: FieldType;
     onDelete: (field: string) => void;
     onUpdateField: (field: FieldType) => void;
+    onUniqueNameUpdate: (field: FieldType) => void;
   }) => {
     return (
       <Draggable draggableId={field.key} key={field.key} index={index}>
@@ -52,7 +54,7 @@ const Field = React.memo(
               label="unique_name"
               value={field.unique_name}
               setTextFunc={(text) =>
-                onUpdateField({ ...field, unique_name: text })
+                onUniqueNameUpdate({ ...field, unique_name: text })
               }
             />
             <InputBox

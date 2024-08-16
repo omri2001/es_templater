@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
+import InputBox from "../../inputs/inputBox";
 import { esTemplate, KafkaDetails } from "../es_template/templateType";
-import InputBox from "../inputBox";
 
 export default function KafkaDetailsBox({
   es_template,

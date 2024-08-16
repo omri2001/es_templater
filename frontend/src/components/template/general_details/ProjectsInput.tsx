@@ -15,7 +15,7 @@ export default function ProjectsInput({
     <Autocomplete
       disablePortal
       id="projects-autocomplete"
-      options={[...projects] || null}
+      options={[...projects]}
       sx={{ width: "25ch" }}
       blurOnSelect={false}
       value={es_template.project == "" ? null : es_template.project}

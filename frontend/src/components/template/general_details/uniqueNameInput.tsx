@@ -1,6 +1,6 @@
 import { Autocomplete, TextField } from "@mui/material";
+import InputBox from "../../inputs/inputBox";
 import { esTemplate } from "../es_template/templateType";
-import InputBox from "../inputBox";
 
 export default function UniqueNameInput({
   kind,

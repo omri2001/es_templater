@@ -1,6 +1,6 @@
 import { MenuItem, Select } from "@mui/material";
 import { useEffect, useState } from "react";
-import { FieldTypeType } from "./fields/fieldType";
+import { FieldTypeType } from "../template/fields/fieldType";
 
 export default function SelectBox({
   label,

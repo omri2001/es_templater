@@ -23,8 +23,6 @@ export default function UpdatePage(): ReactElement {
 
   return (
     <div>
-      <Typography>{"UPDATE PAGE"}</Typography>
-
       <Template
         kind="update"
         es_template={es_template}

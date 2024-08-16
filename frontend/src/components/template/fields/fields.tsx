@@ -6,6 +6,7 @@ import {
   DroppableProvided,
 } from "react-beautiful-dnd";
 
+import { Bounce, toast, ToastContainer } from "react-toastify";
 import { esTemplate } from "../es_template/templateType";
 import Field from "./field";
 import { FieldType, getEmptyField } from "./fieldType";
@@ -52,6 +53,38 @@ export default function Fields({
     });
   };
 
+  const updateField = (newField: FieldType) => {
+    const updatedFields = fields.map((f) =>
+      f.key === newField.key ? newField : f
+    );
+    updateFields(updatedFields);
+  };
+
+  const updateUniqueNameField = (newField: FieldType) => {
+    console.log(newField.unique_name);
+    const is_exists =
+      newField.unique_name !== ""
+        ? fields
+            .map((field) => field.unique_name)
+            .filter((name) => name == newField.unique_name).length >= 1
+        : false;
+    if (is_exists) {
+      toast.error(`duplicate unique name found: ${newField.unique_name}`, {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
+    }
+    updateField(newField);
+    return is_exists;
+  };
+
   return (
     <Box display="flex" flexDirection="column" gap={2} alignItems="center">
       <Button
@@ -81,15 +114,12 @@ export default function Fields({
 
                     updateFields(new_fields);
                   }}
-                  onUpdateField={(updatedField: FieldType) => {
-                    const updatedFields = fields.map((f) =>
-                      f.key === updatedField.key ? updatedField : f
-                    );
-                    updateFields(updatedFields);
-                  }}
+                  onUpdateField={updateField}
+                  onUniqueNameUpdate={updateUniqueNameField}
                 />
               ))}
               {provided.placeholder}
+              <ToastContainer />
             </Box>
           )}
         </Droppable>

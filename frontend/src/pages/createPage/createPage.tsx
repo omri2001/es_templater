@@ -1,4 +1,3 @@
-import { Typography } from "@mui/material";
 import { ReactElement, useEffect, useState } from "react";
 import { PageInfo } from "../../components/navbar/navBar";
 import Template from "../../components/template/es_template/template";
@@ -21,12 +20,11 @@ export default function CreatePage(): ReactElement {
     setEsTemplate({ ...es_template });
   }
   useEffect(() => {
-    setEsTemplateCopy({ ...emptyTemplate });
+    setEsTemplateCopy(emptyTemplate);
   }, []); // Empty dependency array ensures this runs only on mount
 
   return (
     <>
-      <Typography>{"CREATE PAGE"}</Typography>
       <Template
         kind="create"
         es_template={es_template}

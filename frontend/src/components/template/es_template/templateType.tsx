@@ -1,4 +1,3 @@
-import { Box, Typography } from "@mui/material";
 import { FieldType } from "../fields/fieldType";
 import { Project } from "../projects/projectsType";
 
@@ -23,6 +22,7 @@ export interface esTemplate {
   kafka: KafkaDetails;
   classification: ClassificationDetails;
   fields: FieldType[];
+  metadata: string | null;
 }
 
 export const emptyTemplate: esTemplate = {
@@ -32,6 +32,7 @@ export const emptyTemplate: esTemplate = {
   kafka: { brokers: null, username: null, password: null, topic: null },
   classification: { slice1: null, slice2: null, slice3: null, slice4: null },
   fields: [],
+  metadata: "",
 };
 
 export const wofATemplate: esTemplate = {
@@ -63,6 +64,7 @@ export const wofATemplate: esTemplate = {
       is_shown: false,
     },
   ],
+  metadata: "",
 };
 export const wofBTemplate: esTemplate = {
   unique_name: "wofB",
@@ -76,6 +78,7 @@ export const wofBTemplate: esTemplate = {
     slice4: "wofB",
   },
   fields: [],
+  metadata: "",
 };
 export const bomATemplate: esTemplate = {
   unique_name: "bomA",
@@ -89,6 +92,7 @@ export const bomATemplate: esTemplate = {
     slice4: "bomA",
   },
   fields: [],
+  metadata: "",
 };
 
 export const templates: esTemplate[] = [
@@ -96,32 +100,3 @@ export const templates: esTemplate[] = [
   wofBTemplate,
   bomATemplate,
 ];
-
-export function renderObject(obj: any, parentKey = ""): JSX.Element[] {
-  return [
-    <Box key="openBrackets" sx={{ ml: 2 }}>
-      <Typography>{"{"}</Typography>
-      {Object.entries(obj).flatMap(([key, value], index) => {
-        const displayKey = parentKey ? `${parentKey}.${key}` : key;
-        if (typeof value === "object" && value !== null) {
-          return [
-            <Box key={displayKey} sx={{ ml: 2 }}>
-              <Typography key={`${displayKey}-${index}`}>
-                {`${key}: `}
-              </Typography>
-              {renderObject(value, displayKey)}
-            </Box>,
-          ];
-        }
-        return (
-          <Typography key={`${displayKey}-${index}`} sx={{ ml: 2 }}>
-            {`${key}: ${String(value === null ? "" : value)}`}
-          </Typography>
-        );
-      })}
-    </Box>,
-    <Typography key="closeBrackets" sx={{ ml: 2 }}>
-      {"}"}
-    </Typography>,
-  ];
-}

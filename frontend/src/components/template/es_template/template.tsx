@@ -1,17 +1,18 @@
 import { Box } from "@mui/material";
+import PreviewButton from "../../displays/previewButton";
 import ClassificationDetailsBox from "../classification_details/classificationDetailsBox";
 import Fields from "../fields/fields";
 import GeneralDetailsBox from "../general_details/generalDetailsBox";
 import KafkaDetailsBox from "../kafka_details/kafkaDetailsBox";
-import PreviewButton from "../preview/previewButton";
+import MetadataInput from "../metadata/metadataInput";
 import { esTemplate } from "./templateType";
 
 export default function Template({
-  kind,
+  generate_new,
   es_template,
   setEsTemplate,
 }: {
-  kind: "update" | "create";
+  generate_new: boolean;
   es_template: esTemplate;
   setEsTemplate: (text: esTemplate) => void;
 }) {
@@ -29,7 +30,7 @@ export default function Template({
       autoComplete="off"
     >
       <GeneralDetailsBox
-        kind={kind}
+        generate_new={generate_new}
         es_template={es_template}
         setEsTemplate={setEsTemplate}
       />
@@ -43,6 +44,7 @@ export default function Template({
         es_template={es_template}
         setEsTemplate={setEsTemplate}
       />
+      <MetadataInput es_template={es_template} setEsTemplate={setEsTemplate} />
       <Fields es_template={es_template} setEsTemplate={setEsTemplate} />
       <PreviewButton es_template={es_template} />
     </Box>

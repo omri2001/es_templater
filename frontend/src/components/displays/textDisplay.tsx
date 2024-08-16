@@ -1,14 +1,12 @@
 import { TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 
-export default function InputBox({
+export default function DisplayBox({
   label,
   value,
-  setTextFunc,
 }: {
   label: string;
   value: string | null;
-  setTextFunc: (text: string) => void;
 }) {
   const [text, setText] = useState<string>(value === null ? "" : value);
 
@@ -18,16 +16,11 @@ export default function InputBox({
 
   return (
     <TextField
-      id={`${label}-input`}
+      disabled
+      id={`${label}-display`}
       variant="outlined"
       value={text}
       label={label}
-      onChange={(e) => {
-        setText(e.target.value);
-      }}
-      onBlur={() => {
-        setTextFunc(text);
-      }}
     />
   );
 }

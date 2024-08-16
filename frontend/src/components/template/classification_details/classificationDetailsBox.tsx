@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
+import InputBox from "../../inputs/inputBox";
 import { ClassificationDetails, esTemplate } from "../es_template/templateType";
-import InputBox from "../inputBox";
 
 export default function ClassificationDetailsBox({
   es_template,

@@ -10,13 +10,15 @@ import ProjectsInput from "./ProjectsInput";
 import UniqueNameInput from "./uniqueNameInput";
 
 export default function GeneralDetailsBox({
-  kind,
+  generate_new,
   es_template,
   setEsTemplate,
+  showDisplayName = true,
 }: {
-  kind: "create" | "update";
+  generate_new: boolean;
   es_template: esTemplate;
   setEsTemplate: (text: esTemplate) => void;
+  showDisplayName?: boolean;
 }) {
   const [templateOptions, setTemplateOptions] =
     useState<esTemplate[]>(templates);
@@ -43,22 +45,27 @@ export default function GeneralDetailsBox({
 
   return (
     <>
-      <h1>this is the engine template</h1>
+      <h1>Engine template</h1>
       <Box sx={{ display: "flex", flexDirection: "row", gap: 2 }}>
         <ProjectsInput
           es_template={es_template}
           setProjectName={setProjectName}
         />
         <UniqueNameInput
-          kind={kind}
+          kind={generate_new ? "create" : "update"}
           es_template={es_template}
           setEsTemplate={setEsTemplate}
           templates={templateOptions}
         />
-        <DisplayNameInput
-          es_template={es_template}
-          setEsTemplate={setEsTemplate}
-        />
+
+        {showDisplayName ? (
+          <DisplayNameInput
+            es_template={es_template}
+            setEsTemplate={setEsTemplate}
+          />
+        ) : (
+          <></>
+        )}
       </Box>
     </>
   );

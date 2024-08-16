@@ -1,16 +1,8 @@
 import { Box, Button, Dialog, DialogContent } from "@mui/material";
 import { useState } from "react";
-import { esTemplate, renderObject } from "../es_template/templateType";
-const style = {
-  position: "absolute" as "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
+import { esTemplate } from "../template/es_template/templateType";
+import { renderTemplate } from "./renderTemplate";
+
 export default function PreviewButton({
   es_template,
 }: {
@@ -26,7 +18,7 @@ export default function PreviewButton({
       <Dialog open={open} maxWidth="md" fullWidth onClose={handleClose}>
         <DialogContent>
           <Box id="modal-modal-description" sx={{ mt: 2 }}>
-            {renderObject(es_template)}
+            {renderTemplate(es_template)}
           </Box>
         </DialogContent>
       </Dialog>

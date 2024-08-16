@@ -3,11 +3,17 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MyCostumeThemeProvider from "./assets/costumeThemeProvider";
 import ResponsiveNavBar, { PageInfo } from "./components/navbar/navBar";
 import { createPageInfo } from "./pages/createPage/createPage";
+import { transformPageInfo } from "./pages/transformPage/transformPage";
 import { updatePageInfo } from "./pages/updatePage/updatePage";
 import { homePageInfo } from "./pages/welcomePage/welcomPage";
 
 function App() {
-  const pages: PageInfo[] = [homePageInfo, createPageInfo, updatePageInfo];
+  const pages: PageInfo[] = [
+    homePageInfo,
+    createPageInfo,
+    updatePageInfo,
+    transformPageInfo,
+  ];
 
   return (
     <MyCostumeThemeProvider>

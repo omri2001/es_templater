@@ -1,5 +1,5 @@
+import InputBox from "../../inputs/inputBox";
 import { esTemplate } from "../es_template/templateType";
-import InputBox from "../inputBox";
 
 export default function DisplayNameInput({
   es_template,
